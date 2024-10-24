@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const Hestonection = ({ scrollToSection }) => {
-  const obj = 'https://dhgco4b5xc3u.cloudfront.net/Render (4).mp4';
+  const obj = 'https://dhgco4b5xc3u.cloudfront.net/normal-2.mp4';
 
   // State to track whether to show the modal or not
   const [showForm, setShowForm] = useState(false);
