@@ -40,7 +40,7 @@ const Hestonection = ({ scrollToSection }) => {
           </span>
         </h2>
         <p className="text-xl mb-8 opacity-90">
-          Floor not leveled? No Hassle. <div></div>The Pocket Door Frame That's a Breeze to Install
+          No Assembly Required <div></div>Unfold it. Install it.
         </p>
         <button
           onClick={handleButtonClick}
@@ -54,10 +54,11 @@ const Hestonection = ({ scrollToSection }) => {
             <video
               src={obj}
               autoPlay
+              controls
               loop
               muted
               className="absolute top-0 left-0 w-full h-full rounded-lg shadow-2xl"
-              style={{ pointerEvents: 'none' }}></video>
+              style={{ pointerEvents: 'auto' }}></video>
           </div>
         </div>
       </div>

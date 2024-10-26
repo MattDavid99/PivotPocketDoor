@@ -24,19 +24,20 @@ export const FeaturesSection = () => {
       description: "Frames built with our high-quailty metal shouldn't be this cheap, but it is. Save yourself time and money now.",
     },
     {
+      icon: IconShield,
+      title: 'Warp-Resistant Metal Frame',
+      description:
+        'Crafted from high-grade metal, our frames are engineered to resist warping, providing twice the strength and durability of traditional wooden frames.',
+    },
+    {
       icon: IconAssemble,
-      title: 'No Assembly Required',
+      title: 'Zero Assembly Required',
       description: 'Experience the fastest assembly time for pocket door framing, saving you valuable time on every project.',
     },
     {
       icon: IconPerson,
       title: 'One-Person Team',
       description: 'Designed for easy assembly by a single person, increasing efficiency and reducing labor costs by up to 40%.',
-    },
-    {
-      icon: IconShield,
-      title: 'Durable Metal Frame',
-      description: 'Built with high-grade metal, our frames offer 2x the strength and longevity compared to wooden alternatives.',
     },
   ];
 

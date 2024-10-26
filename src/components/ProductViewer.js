@@ -4,7 +4,7 @@ import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
 import * as THREE from 'three';
 
-function Model({ url, onLoaded }) {
+function Model({ url, onLoaded, shouldRotate }) {
   const groupRef = useRef();
   const objRef = useRef();
   const obj = useLoader(OBJLoader, url);
@@ -31,7 +31,7 @@ function Model({ url, onLoaded }) {
   }, [obj, scene, onLoaded]);
 
   useFrame(() => {
-    if (groupRef.current) {
+    if (groupRef.current && shouldRotate) {
       groupRef.current.rotation.y += 0.005;
     }
   });
@@ -41,9 +41,12 @@ function Model({ url, onLoaded }) {
 
 export default function ProductViewer() {
   const [boundingSphere, setBoundingSphere] = useState(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [shouldRotate, setShouldRotate] = useState(true);
   const cameraRef = useRef();
+  const rotationTimeoutRef = useRef();
 
-  const cameraPositionFactor = 0.8;
+  const cameraPositionFactor = 1.1; // Adjusted to zoom out slightly
   const cameraHeight = 0;
 
   useEffect(() => {
@@ -60,6 +63,23 @@ export default function ProductViewer() {
     }
   }, [boundingSphere, cameraPositionFactor, cameraHeight]);
 
+  const handleDragStart = () => {
+    setIsDragging(true);
+    setShouldRotate(false);
+    clearTimeout(rotationTimeoutRef.current); // Clear the previous timer
+  };
+
+  const handleDragEnd = () => {
+    setIsDragging(false);
+    rotationTimeoutRef.current = setTimeout(() => {
+      setShouldRotate(true);
+    }, 5000); // Resume rotation after 5 seconds of no interaction
+  };
+
+  useEffect(() => {
+    return () => clearTimeout(rotationTimeoutRef.current); // Cleanup timer on unmount
+  }, []);
+
   return (
     <div
       style={{
@@ -70,8 +90,7 @@ export default function ProductViewer() {
       }}>
       <Canvas>
         <PerspectiveCamera ref={cameraRef} makeDefault fov={68} />
-        {/* <ambientLight intensity={0.9} /> */}
-        <ambientLight intensity={0.7} color={0xffffff} />
+        <ambientLight intensity={0.75} color={0xffffff} />
         <directionalLight intensity={0.8} position={[1, 1, 1]} />
         <pointLight intensity={0.5} position={[0, 200, 200]} />
         <spotLight intensity={0.5} position={[0, 500, 200]} />
@@ -84,9 +103,9 @@ export default function ProductViewer() {
               <meshStandardMaterial color="hotpink" />
             </mesh>
           }>
-          <Model url="/metal-main.obj" onLoaded={setBoundingSphere} />
+          <Model url="/metal-main.obj" onLoaded={setBoundingSphere} shouldRotate={shouldRotate} />
         </Suspense>
-        <OrbitControls enableDamping={false} enableZoom={false} />
+        <OrbitControls enableDamping={false} enableZoom={true} onStart={handleDragStart} onEnd={handleDragEnd} />
       </Canvas>
     </div>
   );
