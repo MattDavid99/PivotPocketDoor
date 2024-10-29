@@ -41,7 +41,6 @@ function Model({ url, onLoaded, shouldRotate }) {
 
 export default function ProductViewer() {
   const [boundingSphere, setBoundingSphere] = useState(null);
-  const [isDragging, setIsDragging] = useState(false);
   const [shouldRotate, setShouldRotate] = useState(true);
   const cameraRef = useRef();
   const rotationTimeoutRef = useRef();
@@ -64,13 +63,11 @@ export default function ProductViewer() {
   }, [boundingSphere, cameraPositionFactor, cameraHeight]);
 
   const handleDragStart = () => {
-    setIsDragging(true);
     setShouldRotate(false);
     clearTimeout(rotationTimeoutRef.current); // Clear the previous timer
   };
 
   const handleDragEnd = () => {
-    setIsDragging(false);
     rotationTimeoutRef.current = setTimeout(() => {
       setShouldRotate(true);
     }, 5000); // Resume rotation after 5 seconds of no interaction
