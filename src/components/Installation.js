@@ -1,262 +1,128 @@
 import React from 'react';
 import { InstallationSteps } from './InstallationSteps';
 import { SectionHeader } from './SectionHeader';
+import wood6 from '../assets/Wood6-8ft.png';
+import wood7 from '../assets/Wood-7ft.png';
+import wood8 from '../assets/Wood-8ft.png';
+import metal6 from '../assets/Metal-6-8ft.png';
+import metal7 from '../assets/Metal-7ft.png';
+import metal8 from '../assets/Metal-8ft.png';
+
+const DimensionBlock = ({ sectionTitle, compatibilityText, title, dimensions, imageSrc }) => (
+  <div className="flex flex-col md:flex-row items-center mb-12 md:mb-16 justify-between w-full max-w-full">
+    <div className="flex-1 text-center md:text-left md:pr-8 flex flex-col justify-between" style={{ height: '100%' }}>
+      <h3 className="text-2xl font-bold text-primary-dark mb-2">{sectionTitle}</h3>
+      <h4 className="text-lg text-gray-700 mb-4">{compatibilityText}</h4>
+      <h6 className="font-bold text-primary-dark mb-4 text-lg">{title}</h6>
+      <div className="flex-grow flex flex-col justify-center" style={{ height: '100%' }}>
+        {dimensions.map((dimension, index) => (
+          <p key={index} className="mb-2 text-gray-700">
+            {dimension}
+          </p>
+        ))}
+      </div>
+    </div>
+    <div className="flex-1 flex justify-center md:justify-end">
+      <img src={imageSrc} alt="Pocket Door Diagram" className="w-full max-w-md h-auto" style={{ borderRadius: '10px' }} />
+    </div>
+  </div>
+);
 
 export const Installation = () => {
+  const singleDoorData = [
+    {
+      sectionTitle: `WOOD ROUGH OPENING (6'8")`,
+      compatibilityText: 'COMPATIBLE WITH JOHNSON POCKET DOOR HARDWARE',
+      title: '(6\'-8" Tall Single Door)',
+      dimensions: [
+        'Finish Door Size: Single 2\'-0", 4\'-1" X 6\'-11"',
+        'Single 2\'-4", 4\'-9" X 6\'-11"',
+        'Single 2\'-6", 5\'-1" X 6\'-11"',
+      ],
+      imageSrc: wood6, // Replace with actual path for each image
+    },
+    {
+      sectionTitle: `WOOD ROUGH OPENING (7'0")`,
+      compatibilityText: 'COMPATIBLE WITH JOHNSON POCKET DOOR HARDWARE',
+      title: '(7\'-0" Tall Single Door)',
+      dimensions: ['Finish Door Size: Single 2\'-0", 4\'-1" X 7\'-3"', 'Single 2\'-4", 4\'-9" X 7\'-3"', 'Single 2\'-6", 5\'-1" X 7\'-3"'],
+      imageSrc: wood7,
+    },
+    {
+      sectionTitle: `WOOD ROUGH OPENING (8'0")`,
+      compatibilityText: 'COMPATIBLE WITH JOHNSON POCKET DOOR HARDWARE',
+      title: '(8\'-0" Tall Single Door)',
+      dimensions: ['Finish Door Size: Single 2\'-0", 4\'-1" X 8\'-3"', 'Single 2\'-4", 4\'-9" X 8\'-3"', 'Single 2\'-6", 5\'-1" X 8\'-3"'],
+      imageSrc: wood8,
+    },
+  ];
+
+  const doubleDoorData = [
+    {
+      sectionTitle: `METAL ROUGH OPENING (6'8")`,
+      compatibilityText: 'COMPATIBLE WITH JOHNSON POCKET DOOR HARDWARE',
+      title: '(6\'-8" Tall Single Door)',
+      dimensions: [
+        'Finish Door Size: Single 2\'-0", 4\'-1" X 6\'-11"',
+        'Single 2\'-4", 4\'-9" X 6\'-11"',
+        'Single 2\'-6", 5\'-1" X 6\'-11"',
+      ],
+      imageSrc: metal6,
+    },
+    {
+      sectionTitle: `METAL ROUGH OPENING (7'0")`,
+      compatibilityText: 'COMPATIBLE WITH JOHNSON POCKET DOOR HARDWARE',
+      title: '(7\'-0" Tall Single Door)',
+      dimensions: ['Finish Door Size: Single 2\'-0", 4\'-1" X 7\'-3"', 'Single 2\'-4", 4\'-9" X 7\'-3"', 'Single 2\'-6", 5\'-1" X 7\'-3"'],
+      imageSrc: metal7,
+    },
+    {
+      sectionTitle: `METAL ROUGH OPENING (8'0")`,
+      compatibilityText: 'COMPATIBLE WITH JOHNSON POCKET DOOR HARDWARE',
+      title: '(8\'-0" Tall Single Door)',
+      dimensions: ['Finish Door Size: Single 2\'-0", 4\'-1" X 8\'-3"', 'Single 2\'-4", 4\'-9" X 8\'-3"', 'Single 2\'-6", 5\'-1" X 8\'-3"'],
+      imageSrc: metal8,
+    },
+  ];
+
   return (
-    <div className="container mx-auto px-4">
+    <div className="container mx-auto px-4 pb-16">
       <SectionHeader
         subheading="See It in Action"
         heading="Pivot Pocket Door Frame"
         description="Smart Design, Easy Installation: Your Perfect Pocket Door Frame Awaits"
       />
       <InstallationSteps />
+
+      {/* Single Door Section */}
+      <div className="max-w-full px-8 mb-20 pt-10 mt-20">
+        <div className="flex flex-col items-center w-3/4 mx-auto">
+          {singleDoorData.map((data, index) => (
+            <DimensionBlock
+              key={index}
+              sectionTitle={data.sectionTitle}
+              compatibilityText={data.compatibilityText}
+              title={data.title}
+              dimensions={data.dimensions}
+              imageSrc={data.imageSrc}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Double Door Section */}
       <div className="max-w-full px-8">
-        <div className="w-full mx-auto">
-          <div className="w3-content mx-auto" style={{ maxWidth: '1100px', marginTop: '80px', marginBottom: '80px' }}>
-            <div className="w3-container w3-padding-16"></div>
-
-            <div className="w3-panel w3-center w3-text-charcoal">
-              <h3 className="w3-large">
-                <b>POCKET DOOR ROUGH OPENINGS</b>
-              </h3>
-              <h3 className="w3-small">COMPATIBLE WITH JOHNSON POCKET DOOR HARDWARE</h3>
-              <br />
-              <h6>
-                <b>
-                  <font className="text-primary-dark">(6'-8" Tall Single Door)</font>
-                </b>
-              </h6>
-            </div>
-
-            <div className="w3-panel w3-center w3-text-charcoal mb-8">
-              <div style={{ overflowX: 'auto' }}>
-                <table className="mx-auto" width="100%">
-                  <thead>
-                    <tr>
-                      <th>Finish Door Size</th>
-                      <th>Single 2'-0"</th>
-                      <th>Single 2'-4"</th>
-                      <th>Single 2'-6"</th>
-                      <th>Single 2'-8"</th>
-                      <th>Single 2'-10"</th>
-                      <th>Single 3'-0"</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Rough Frame Opening (W X H)</td>
-                      <td>4'-1" X 6'-11"</td>
-                      <td>4'-9" X 6'-11"</td>
-                      <td>5'-1" X 6'-11"</td>
-                      <td>5'-5" X 6'-11"</td>
-                      <td>5'-9" X 6'-11"</td>
-                      <td>6'-1" X 6'-11"</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <hr className="my-8 border-gray-300" />
-            </div>
-
-            <div className="w3-panel w3-center w3-text-charcoal">
-              <h6>
-                <b>
-                  <font className="text-primary-dark">(7'-0" Tall Single Door)</font>
-                </b>
-              </h6>
-            </div>
-
-            <div className="w3-panel w3-center w3-text-charcoal mb-8">
-              <div style={{ overflowX: 'auto' }}>
-                <table className="mx-auto" width="100%">
-                  <thead>
-                    <tr>
-                      <th>Finish Door Size</th>
-                      <th>Single 2'-0"</th>
-                      <th>Single 2'-4"</th>
-                      <th>Single 2'-6"</th>
-                      <th>Single 2'-8"</th>
-                      <th>Single 2'-10"</th>
-                      <th>Single 3'-0"</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Rough Frame Opening (W X H)</td>
-                      <td>4'-1" X 7'-3"</td>
-                      <td>4'-9" X 7'-3"</td>
-                      <td>5'-1" X 7'-3"</td>
-                      <td>5'-5" X 7'-3"</td>
-                      <td>5'-9" X 7'-3"</td>
-                      <td>6'-1" X 7'-3"</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <hr className="my-8 border-gray-300" />
-            </div>
-
-            <div className="w3-panel w3-center w3-text-charcoal">
-              <h6>
-                <b>
-                  <font className="text-primary-dark">(8'-0" Tall Single Door)</font>
-                </b>
-              </h6>
-            </div>
-
-            <div className="w3-panel w3-center w3-text-charcoal mb-8">
-              <div style={{ overflowX: 'auto' }}>
-                <table className="mx-auto" width="100%">
-                  <thead>
-                    <tr>
-                      <th>Finish Door Size</th>
-                      <th>Single 2'-0"</th>
-                      <th>Single 2'-4"</th>
-                      <th>Single 2'-6"</th>
-                      <th>Single 2'-8"</th>
-                      <th>Single 2'-10"</th>
-                      <th>Single 3'-0"</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Rough Frame Opening (W X H)</td>
-                      <td>4'-1" X 8'-3"</td>
-                      <td>4'-9" X 8'-3"</td>
-                      <td>5'-1" X 8'-3"</td>
-                      <td>5'-5" X 8'-3"</td>
-                      <td>5'-9" X 8'-3"</td>
-                      <td>6'-1" X 8'-3"</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <hr className="my-8 border-gray-300" />
-            </div>
-
-            <br />
-            <br />
-
-            <div className="w3-panel w3-center w3-text-charcoal">
-              <h3 className="w3-large">
-                <b>POCKET DOOR ROUGH OPENINGS</b>
-              </h3>
-              <h3 className="w3-small">COMPATIBLE WITH JOHNSON POCKET DOOR HARDWARE</h3>
-              <br />
-              <h6>
-                <b>
-                  <font className="text-primary-dark">(6'-8" Tall Double Door)</font>
-                </b>
-              </h6>
-            </div>
-
-            <div className="w3-panel w3-center w3-text-charcoal mb-8">
-              <div style={{ overflowX: 'auto' }}>
-                <table className="mx-auto" width="100%">
-                  <thead>
-                    <tr>
-                      <th>Finish Door Size</th>
-                      <th>Double 2'-0"</th>
-                      <th>Double 2'-4"</th>
-                      <th>Double 2'-6"</th>
-                      <th>Double 2'-8"</th>
-                      <th>Double 2'-10"</th>
-                      <th>Double 3'-0"</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Rough Frame Opening (W X H)</td>
-                      <td>8'-0" X 6'-11"</td>
-                      <td>9'-4" X 6'-11"</td>
-                      <td>10'-0" X 6'-11"</td>
-                      <td>10'-8" X 6'-11"</td>
-                      <td>11'-4" X 6'-11"</td>
-                      <td>12'-0" X 6'-11"</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <hr className="my-8 border-gray-300" />
-            </div>
-
-            <div className="w3-panel w3-center w3-text-charcoal">
-              <h6>
-                <b>
-                  <font className="text-primary-dark">(7'-0" Tall Double Door)</font>
-                </b>
-              </h6>
-            </div>
-
-            <div className="w3-panel w3-center w3-text-charcoal mb-8">
-              <div style={{ overflowX: 'auto' }}>
-                <table className="mx-auto" width="100%">
-                  <thead>
-                    <tr>
-                      <th>Finish Door Size</th>
-                      <th>Double 2'-0"</th>
-                      <th>Double 2'-4"</th>
-                      <th>Double 2'-6"</th>
-                      <th>Double 2'-8"</th>
-                      <th>Double 2'-10"</th>
-                      <th>Double 3'-0"</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Rough Frame Opening (W X H)</td>
-                      <td>8'-0" X 7'-3"</td>
-                      <td>9'-4" X 7'-3"</td>
-                      <td>10'-0" X 7'-3"</td>
-                      <td>10'-8" X 7'-3"</td>
-                      <td>11'-4" X 7'-3"</td>
-                      <td>12'-0" X 7'-3"</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <hr className="my-8 border-gray-300" />
-            </div>
-
-            <div className="w3-panel w3-center w3-text-charcoal">
-              <h6>
-                <b>
-                  <font className="text-primary-dark">(8'-0" Tall Double Door)</font>
-                </b>
-              </h6>
-            </div>
-
-            <div className="w3-panel w3-center w3-text-charcoal mb-8">
-              <div style={{ overflowX: 'auto' }}>
-                <table className="mx-auto" width="100%">
-                  <thead>
-                    <tr>
-                      <th>Finish Door Size</th>
-                      <th>Double 2'-0"</th>
-                      <th>Double 2'-4"</th>
-                      <th>Double 2'-6"</th>
-                      <th>Double 2'-8"</th>
-                      <th>Double 2'-10"</th>
-                      <th>Double 3'-0"</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Rough Frame Opening (W X H)</td>
-                      <td>8'-0" X 8'-3"</td>
-                      <td>9'-4" X 8'-3"</td>
-                      <td>10'-0" X 8'-3"</td>
-                      <td>10'-8" X 8'-3"</td>
-                      <td>11'-4" X 8'-3"</td>
-                      <td>12'-0" X 8'-3"</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <hr className="my-8 border-gray-300" />
-            </div>
-          </div>
+        <div className="flex flex-col items-center w-3/4 mx-auto">
+          {doubleDoorData.map((data, index) => (
+            <DimensionBlock
+              key={index}
+              sectionTitle={data.sectionTitle}
+              compatibilityText={data.compatibilityText}
+              title={data.title}
+              dimensions={data.dimensions}
+              imageSrc={data.imageSrc}
+            />
+          ))}
         </div>
       </div>
     </div>
