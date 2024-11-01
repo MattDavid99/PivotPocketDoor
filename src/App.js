@@ -8,6 +8,7 @@ import { Menu } from './components/Menu';
 import { ContactBar } from './components/ContactBar';
 import { SocialMedia } from './components/SocialMedia';
 import Hestonection from './components/Hero';
+import { VideoAdvantageSection } from './components/VideoAdvantageSection';
 
 const MarketingPage = () => {
   const [isContactBarVisible, setIsContactBarVisible] = useState(true);
@@ -72,6 +73,14 @@ const MarketingPage = () => {
         {/* Video Section */}
         <section id="video" ref={(el) => (sectionRefs.current['installation'] = el)} className="py-24 bg-white">
           <Installation />
+        </section>
+
+        {/* VideoAdvantageSection */}
+        <section
+          id="video-advantage"
+          ref={(el) => (sectionRefs.current['video-advantage'] = el)}
+          className="bg-gray-50 py-12 sm:py-16 lg:py-20 xl:py-24">
+          <VideoAdvantageSection scrollToHero={() => scrollToSection('home')} />
         </section>
 
         {/* Benefits */}
