@@ -70,17 +70,17 @@ const MarketingPage = () => {
           <FeaturesSection />
         </section>
 
-        {/* Video Section */}
-        <section id="video" ref={(el) => (sectionRefs.current['installation'] = el)} className="py-24 bg-white">
-          <Installation />
-        </section>
-
         {/* VideoAdvantageSection */}
         <section
           id="video-advantage"
           ref={(el) => (sectionRefs.current['video-advantage'] = el)}
           className="bg-gray-50 py-12 sm:py-16 lg:py-20 xl:py-24">
           <VideoAdvantageSection scrollToHero={() => scrollToSection('home')} />
+        </section>
+
+        {/* Video Section */}
+        <section id="video" ref={(el) => (sectionRefs.current['installation'] = el)} className="py-24 bg-white">
+          <Installation />
         </section>
 
         {/* Benefits */}
