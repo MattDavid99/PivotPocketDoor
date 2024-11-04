@@ -2,7 +2,7 @@ import React from 'react';
 import { SectionHeader } from './SectionHeader';
 
 export const VideoAdvantageSection = ({ scrollToHero }) => {
-  const obj = 'https://dhgco4b5xc3u.cloudfront.net/Short-video.mp4';
+  const obj = 'https://dhgco4b5xc3u.cloudfront.net/normal-2.mp4';
 
   const advantages = [
     'Provides seamless integration for all project types',
@@ -25,9 +25,14 @@ export const VideoAdvantageSection = ({ scrollToHero }) => {
           {/* Video Section */}
           <div className="lg:col-start-1">
             <div className="aspect-w-3 aspect-h-2 rounded-lg overflow-hidden">
-              <video autoPlay loop muted src={obj} className="w-full h-full object-cover">
-                Your browser does not support the video tag.
-              </video>
+              <video
+                src={obj}
+                autoPlay
+                controls
+                loop
+                muted
+                className="w-full h-full object-cover"
+                style={{ pointerEvents: 'auto' }}></video>
             </div>
           </div>
           <div className="lg:col-start-2 lg:max-w-2xl mt-10 lg:-mt-10">

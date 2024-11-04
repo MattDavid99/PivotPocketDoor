@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const Hestonection = ({ scrollToSection }) => {
-  const obj = 'https://dhgco4b5xc3u.cloudfront.net/normal-2.mp4';
+  const obj = 'https://dhgco4b5xc3u.cloudfront.net/video-4.mp4';
 
   // State to track whether to show the modal or not
   const [showForm, setShowForm] = useState(false);
@@ -51,14 +51,7 @@ const Hestonection = ({ scrollToSection }) => {
       <div className="md:w-1/2 w-full flex lg:justify-end">
         <div className="w-full lg:max-w-[800px] rounded-lg">
           <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
-            <video
-              src={obj}
-              autoPlay
-              controls
-              loop
-              muted
-              className="absolute top-0 left-0 w-full h-full rounded-lg shadow-2xl"
-              style={{ pointerEvents: 'auto' }}></video>
+            <video autoPlay loop muted src={obj} className="absolute top-0 left-0 w-full h-full rounded-lg shadow-2xl"></video>
           </div>
         </div>
       </div>
