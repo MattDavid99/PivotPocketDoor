@@ -16,9 +16,9 @@ export const VideoAdvantageSection = ({ scrollToHero }) => {
   return (
     <div className="container mx-auto px-4">
       <SectionHeader
-        subheading="Explore Our Advantage"
-        heading="Installation Has Never Been Easier"
-        description="Discover the features that make our solution right for you."
+        // subheading="Explore Our Advantage"
+        heading="Engineered For Excellence"
+        // description="Discover the features that make our solution right for you."
       />
       <div className="mx-auto px-4 py-10 lg:py-0 lg:pb-6 sm:px-6 lg:px-8">
         <div className="lg:grid lg:grid-cols-2 lg:gap-20 lg:items-center">
