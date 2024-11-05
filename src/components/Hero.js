@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const Hestonection = ({ scrollToSection }) => {
-  const obj = 'https://dhgco4b5xc3u.cloudfront.net/video-4.mp4';
+  const obj = 'https://dhgco4b5xc3u.cloudfront.net/Short-video-5.mp4';
 
   // State to track whether to show the modal or not
   const [showForm, setShowForm] = useState(false);
@@ -32,27 +32,41 @@ const Hestonection = ({ scrollToSection }) => {
   return (
     <div className="container mx-auto flex flex-col md:flex-row items-center gap-2">
       <div className="md:w-1/2 mb-12 md:mb-0 flex flex-col lg:text-left text-center items-center lg:items-start">
-        <h2 className="text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+        <h2 className="text-4xl lg:text-6xl font-bold mb-11 leading-tight">
           <span className="block leading-tight">
             <span className="lightning-text inline-block -mb-2 mr-2">A Revolutionary</span>
             <div></div>
             Pocket Door Frame
           </span>
         </h2>
-        <p className="text-xl mb-8 opacity-90">
+        <p className="text-3xl mb-12 opacity-90">
           No Assembly Required <div></div>Unfold it. Install it.
         </p>
         <button
           onClick={handleButtonClick}
           className="bg-white text-stone-900 px-8 py-4 w-fit rounded-full text-lg font-semibold hover:bg-primary-lighter transition duration-300 shadow-lg transform hover:scale-105">
-          Try it out!
+          Buy Now
         </button>
       </div>
       <div className="md:w-1/2 w-full flex lg:justify-end">
-        <div className="w-full lg:max-w-[800px] rounded-lg">
-          <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
-            <video autoPlay loop muted src={obj} className="absolute top-0 left-0 w-full h-full rounded-lg shadow-2xl"></video>
-          </div>
+        <div
+          className="rounded-lg flex items-center justify-center"
+          style={{
+            overflow: 'hidden',
+            aspectRatio: '1 / 0.85', // Ensure this matches your video’s aspect ratio
+            maxWidth: '100%',
+            height: 'auto',
+          }}>
+          <video
+            autoPlay
+            loop
+            muted
+            src={obj}
+            className="h-full"
+            style={{
+              borderRadius: '10px', // Ensures the video also has rounded corners
+              objectFit: 'contain',
+            }}></video>
         </div>
       </div>
 
