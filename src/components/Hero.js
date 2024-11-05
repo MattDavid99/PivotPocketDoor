@@ -36,7 +36,7 @@ const Hestonection = ({ scrollToSection }) => {
           <span className="block leading-tight">
             <span className="lightning-text inline-block -mb-2 mr-2">A Revolutionary</span>
             <div></div>
-            Pocket Door Frame
+            Pivot Pocket Door Frame
           </span>
         </h2>
         <p className="text-3xl mb-12 opacity-90">
