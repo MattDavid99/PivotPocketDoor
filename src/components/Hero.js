@@ -32,14 +32,14 @@ const Hestonection = ({ scrollToSection }) => {
   return (
     <div className="container mx-auto flex flex-col md:flex-row items-center gap-2">
       <div className="md:w-1/2 mb-12 md:mb-0 flex flex-col lg:text-left text-center items-center lg:items-start">
-        <h2 className="text-4xl lg:text-6xl font-bold mb-11 leading-tight">
+        <h2 className="text-4xl lg:text-6xl font-bold mb-16 leading-tight">
           <span className="block leading-tight">
             <span className="lightning-text inline-block -mb-2 mr-2">A Revolutionary</span>
             <div></div>
             Pivot Pocket Door Frame
           </span>
         </h2>
-        <p className="text-3xl mb-12 opacity-90">
+        <p className="text-3xl mb-16 opacity-90">
           No Assembly Required <div></div>Unfold it. Install it.
         </p>
         <button
