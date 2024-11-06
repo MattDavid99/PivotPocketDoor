@@ -1,11 +1,10 @@
 import React from 'react';
 import IconAssemble from '../assets/assemble.png';
-import IconMoney from '../assets/piggy-bank.png';
 import IconPerson from '../assets/person.png';
 import IconShield from '../assets/shield.png';
 
-const FeatureCard = ({ icon, title, description, isLast = false }) => (
-  <div className={`relative group bg-white transition hover:z-[1] hover:shadow-2xl ${isLast ? 'lg:hidden xl:block' : ''}`}>
+const FeatureCard = ({ icon, title, description }) => (
+  <div className="relative group bg-white transition hover:z-[1] hover:shadow-2xl">
     <div className="relative p-6 space-y-6">
       <img src={icon} className="w-10" width="512" height="512" alt={`${title} icon`} />
       <div className="space-y-2">
@@ -19,39 +18,30 @@ const FeatureCard = ({ icon, title, description, isLast = false }) => (
 export const FeaturesSection = () => {
   const features = [
     {
-      icon: IconMoney,
-      title: "Don't Break The Bank",
-      description: "Frames built with our high-quailty metal shouldn't be this cheap, but it is. Save yourself time and money now.",
-    },
-    {
       icon: IconShield,
-      title: 'Warp-Resistant Metal Frame',
+      title: 'The Strongest',
       description:
-        'Crafted from high-grade metal, our frames are engineered to resist warping, providing twice the strength and durability of traditional wooden frames.',
+        'Built tough to last. Our reinforced metal frame provides unmatched durability and strength for any project. Invest in the frame that holds up under pressure, ensuring a solid foundation every time.',
     },
     {
       icon: IconAssemble,
-      title: 'Zero Assembly Required',
-      description: 'Experience the fastest assembly time for pocket door framing, saving you valuable time on every project.',
+      title: 'The Fastest',
+      description:
+        'Get the job done quicker. Our frame is designed for rapid assembly, saving you valuable time. Simplify your workflow and reduce labor costs without sacrificing quality or precision.',
     },
     {
       icon: IconPerson,
-      title: 'One-Person Team',
-      description: 'Designed for easy assembly by a single person, increasing efficiency and reducing labor costs by up to 40%.',
+      title: 'THE BEST',
+      description:
+        'Top quality at a competitive price. Experience premium design and performance without compromise. Elevate your projects with the frame crafted for reliability and aesthetic appeal.',
     },
   ];
 
   return (
     <div className="container m-auto py-10 px-3">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-x divide-y rounded-xl overflow-hidden">
+      <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 divide-x divide-y rounded-xl overflow-hidden">
         {features.map((feature, index) => (
-          <FeatureCard
-            key={index}
-            icon={feature.icon}
-            title={feature.title}
-            description={feature.description}
-            isLast={index === features.length - 1}
-          />
+          <FeatureCard key={index} icon={feature.icon} title={feature.title} description={feature.description} />
         ))}
       </div>
     </div>

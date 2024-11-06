@@ -17,6 +17,7 @@ function Model({ url, onLoaded, shouldRotate }) {
       const scaleFactor = 0.005;
       objRef.current.scale.set(scaleFactor, scaleFactor, scaleFactor);
 
+      // Centering the object
       const box = new THREE.Box3().setFromObject(objRef.current);
       const center = box.getCenter(new THREE.Vector3());
       objRef.current.position.sub(center);
@@ -25,6 +26,19 @@ function Model({ url, onLoaded, shouldRotate }) {
 
       groupRef.current.add(objRef.current);
       scene.add(groupRef.current);
+
+      // Adjusting material to lighten the appearance
+      objRef.current.traverse((child) => {
+        if (child.isMesh) {
+          child.material = new THREE.MeshStandardMaterial({
+            color: 0xb0b0b0, // Lighter gray base color for brightness
+            metalness: 0.1, // Reduce metalness to make it reflect more light
+            roughness: 0.2, // Slightly increase roughness for better visibility
+            envMapIntensity: 1.2, // Adjust reflection intensity
+            reflectivity: 0.9, // Slightly lower reflectivity to prevent dark reflections
+          });
+        }
+      });
 
       onLoaded(sphere);
     }
@@ -45,7 +59,7 @@ export default function ProductViewer() {
   const cameraRef = useRef();
   const rotationTimeoutRef = useRef();
 
-  const cameraPositionFactor = 1.1; // Adjusted to zoom out slightly
+  const cameraPositionFactor = 0.99;
   const cameraHeight = 0;
 
   useEffect(() => {
@@ -64,35 +78,38 @@ export default function ProductViewer() {
 
   const handleDragStart = () => {
     setShouldRotate(false);
-    clearTimeout(rotationTimeoutRef.current); // Clear the previous timer
+    clearTimeout(rotationTimeoutRef.current);
   };
 
   const handleDragEnd = () => {
     rotationTimeoutRef.current = setTimeout(() => {
       setShouldRotate(true);
-    }, 5000); // Resume rotation after 5 seconds of no interaction
+    }, 5000);
   };
 
   useEffect(() => {
-    return () => clearTimeout(rotationTimeoutRef.current); // Cleanup timer on unmount
+    return () => clearTimeout(rotationTimeoutRef.current);
   }, []);
 
   return (
     <div
       style={{
         width: '100%',
-        maxWidth: '1080px',
-        height: '650px',
-        margin: 'auto',
+        height: '100%',
+        backgroundColor: 'white',
       }}>
       <Canvas>
         <PerspectiveCamera ref={cameraRef} makeDefault fov={68} />
-        <ambientLight intensity={0.75} color={0xffffff} />
-        <directionalLight intensity={0.8} position={[1, 1, 1]} />
-        <pointLight intensity={0.5} position={[0, 200, 200]} />
-        <spotLight intensity={0.5} position={[0, 500, 200]} />
 
-        <pointLight position={[10, 10, 10]} />
+        {/* Adjusted lighting to lighten the model */}
+        <ambientLight intensity={0.6} color={0xffffff} />
+        <directionalLight intensity={1.2} position={[3, 3, 5]} color={0xffffff} />
+        <directionalLight intensity={0.8} position={[-3, -3, -5]} color={0xffffff} />
+
+        {/* Additional point lights for consistent illumination */}
+        <pointLight intensity={0.6} position={[2, 3, 4]} color={0xffffff} />
+        <pointLight intensity={0.4} position={[-2, -1, 1]} color={0xffffff} />
+
         <Suspense
           fallback={
             <mesh>
@@ -102,7 +119,13 @@ export default function ProductViewer() {
           }>
           <Model url="/metal-main.obj" onLoaded={setBoundingSphere} shouldRotate={shouldRotate} />
         </Suspense>
-        <OrbitControls enableDamping={false} enableZoom={true} onStart={handleDragStart} onEnd={handleDragEnd} />
+        <OrbitControls
+          enableDamping={false}
+          enableZoom={true}
+          maxDistance={20} // higher number, more they can zoom out
+          onStart={handleDragStart}
+          onEnd={handleDragEnd}
+        />
       </Canvas>
     </div>
   );

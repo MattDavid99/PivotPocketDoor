@@ -15,13 +15,11 @@ export const VideoAdvantageSection = ({ scrollToHero }) => {
 
   return (
     <div className="container mx-auto px-4">
-      <SectionHeader
-        subheading="Explore Our Advantage"
-        heading="Engineered For Excellence. Take A Closer Look"
-        description="Discover the features that make our solution right for you."
-      />
-      <div className="mx-auto px-4 py-10 lg:py-0 lg:pb-6 sm:px-6 lg:px-8">
-        <div className="lg:grid lg:grid-cols-2 lg:gap-20 lg:items-center">
+      {/* Only the main heading without subheading or description */}
+      <SectionHeader heading="Engineered For Excellence. Take A Closer Look" />
+
+      <div className="mx-auto px-4 py-8 sm:px-6 lg:px-8">
+        <div className="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
           {/* Video Section */}
           <div className="lg:col-start-1">
             <div className="aspect-w-3 aspect-h-2 rounded-lg overflow-hidden">
@@ -35,12 +33,14 @@ export const VideoAdvantageSection = ({ scrollToHero }) => {
                 style={{ pointerEvents: 'auto' }}></video>
             </div>
           </div>
-          <div className="lg:col-start-2 lg:max-w-2xl mt-10 lg:-mt-10">
-            <p className="text-base font-semibold leading-6 text-primary uppercase">The Pivot Pocket Door Advantage</p>
+
+          {/* Advantage List Section */}
+          <div className="lg:col-start-2 lg:max-w-2xl mt-8 lg:mt-0">
+            <p className="text-2xl pb-2 font-semibold leading-6 text-primary uppercase">The Pivot Pocket Door Advantage</p>
             <h4 className="mt-2 text-2xl font-extrabold leading-8 text-gray-900 sm:text-3xl sm:leading-9">
               Built for Versatility, Designed for Convenience
             </h4>
-            <ul className="mt-8 space-y-3.5 text-lg">
+            <ul className="mt-6 space-y-3.5 text-lg">
               {advantages.map((advantage, index) => (
                 <li key={index} className="flex items-start lg:col-span-1">
                   <div className="flex-shrink-0">

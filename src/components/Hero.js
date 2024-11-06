@@ -1,27 +1,25 @@
 import React, { useState, useEffect } from 'react';
+import ProductViewer from './ProductViewer';
+import { FaArrowRight } from 'react-icons/fa'; // Import Font Awesome arrow icon
 
 const Hestonection = ({ scrollToSection }) => {
-  const obj = 'https://dhgco4b5xc3u.cloudfront.net/Short-video-5.mp4';
+  const [showVideo, setShowVideo] = useState(true);
+  const objVideo = 'https://dhgco4b5xc3u.cloudfront.net/Short-video-5.mp4';
 
-  // State to track whether to show the modal or not
+  // Toggle between video and 3D model viewer
+  const handleToggle = () => {
+    setShowVideo((prevShowVideo) => !prevShowVideo);
+  };
+
+  // Modal functionality
   const [showForm, setShowForm] = useState(false);
-
-  // Toggle function to show/hide the modal
-  const handleButtonClick = () => {
-    setShowForm(true);
-  };
-
-  // Function to close the modal
-  const closeModal = () => {
-    setShowForm(false);
-  };
+  const handleButtonClick = () => setShowForm(true);
+  const closeModal = () => setShowForm(false);
 
   useEffect(() => {
     if (showForm) {
-      // Disable scroll
       document.body.style.overflow = 'hidden';
     } else {
-      // Enable scroll
       document.body.style.overflow = 'auto';
     }
     return () => {
@@ -31,12 +29,12 @@ const Hestonection = ({ scrollToSection }) => {
 
   return (
     <div className="container mx-auto flex flex-col md:flex-row items-center gap-2">
-      <div className="md:w-1/2 mb-12 md:mb-0 flex flex-col lg:text-left text-center items-center lg:items-start">
+      <div className="md:w-1/2 mb-12 md:mb-0 flex flex-col lg:text-left text-center items-center lg:items-start md:text-left d:items-start">
         <h2 className="text-4xl lg:text-6xl font-bold mb-16 leading-tight">
           <span className="block leading-tight">
             <span className="lightning-text inline-block -mb-2 mr-2">A Revolutionary</span>
             <div></div>
-            Pivot Pocket Door Frame
+            Pocket Door Frame
           </span>
         </h2>
         <p className="text-3xl mb-16 opacity-90">
@@ -48,40 +46,61 @@ const Hestonection = ({ scrollToSection }) => {
           Buy Now
         </button>
       </div>
-      <div className="md:w-1/2 w-full flex lg:justify-end">
+      <div className="md:w-1/2 w-full flex lg:justify-end relative">
+        {/* Container for consistent size */}
         <div
           className="rounded-lg flex items-center justify-center"
           style={{
             overflow: 'hidden',
-            aspectRatio: '1 / 0.85', // Ensure this matches your video’s aspect ratio
-            maxWidth: '100%',
-            height: 'auto',
+            width: '600px', // Set fixed width
+            height: '700px', // Set fixed height (adjust as needed)
+            backgroundColor: 'white', // Ensures white background for both
+            borderRadius: '10px',
+            position: 'relative',
           }}>
+          {/* Video Element */}
           <video
             autoPlay
             loop
             muted
-            src={obj}
-            className="h-full"
+            src={objVideo}
+            className={`h-full w-full ${showVideo ? '' : 'hidden'}`}
             style={{
-              borderRadius: '10px', // Ensures the video also has rounded corners
-              objectFit: 'contain',
+              borderRadius: '10px',
+              objectFit: 'cover',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
             }}></video>
+
+          {/* 3D Model Viewer */}
+          <div className={`${showVideo ? 'hidden' : ''}`} style={{ width: '100%', height: '100%' }}>
+            <ProductViewer />
+          </div>
         </div>
+
+        {/* Circular Toggle Button */}
+        <button
+          onClick={handleToggle}
+          className="absolute bottom-4 right-4 bg-white text-stone-900 rounded-full w-12 h-12 flex items-center justify-center shadow-lg transition duration-300 hover:bg-gray-300"
+          style={{
+            fontSize: '1.25rem',
+          }}>
+          <FaArrowRight />
+        </button>
       </div>
 
       {/* Modal Overlay */}
       {showForm && (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-[10000]">
-          {/* Modal Container */}
           <div className="bg-white rounded-lg shadow-xl w-[90%] sm:w-[80%] md:w-[70%] lg:w-[50%] max-w-[800px] h-[80vh] relative z-[10001] overflow-hidden flex flex-col pt-12 px-6">
-            {/* Close Button */}
             <button
               onClick={closeModal}
               className="absolute top-4 left-4 text-gray-500 hover:text-gray-800 focus:outline-none p-2 text-2xl z-50">
               ✕
             </button>
-            {/* Iframe Wrapper */}
             <div className="flex-grow overflow-y-auto">
               <iframe
                 src="https://docs.google.com/forms/d/e/1FAIpQLSdDYia_kfnJLJKP1xf2LI5GWiMm55O49B0XBQC9nR8Oy4uvlw/viewform?embedded=true"
@@ -101,4 +120,5 @@ const Hestonection = ({ scrollToSection }) => {
     </div>
   );
 };
+
 export default Hestonection;

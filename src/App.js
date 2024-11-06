@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Installation } from './components/Installation';
-import { MetalProAdvantage } from './components/Advantages';
 import { CallToAction } from './components/CallToAction';
 import { FeaturesSection } from './components/Features';
-import { BenefitsSection } from './components/Benefits';
 import { Menu } from './components/Menu';
 import { ContactBar } from './components/ContactBar';
 import { SocialMedia } from './components/SocialMedia';
@@ -81,19 +79,6 @@ const MarketingPage = () => {
         {/* Video Section */}
         <section id="video" ref={(el) => (sectionRefs.current['installation'] = el)} className="py-24 bg-white">
           <Installation />
-        </section>
-
-        {/* Benefits */}
-        <section id="benefits" ref={(el) => (sectionRefs.current['benefits'] = el)} className="py-24 bg-primary text-white">
-          <BenefitsSection scrollToHero={() => scrollToSection('home')} />
-        </section>
-
-        {/* Advantages */}
-        <section
-          id="advantages"
-          ref={(el) => (sectionRefs.current['advantages'] = el)}
-          className="bg-gray-50 py-12 sm:py-16 lg:py-20 xl:py-24">
-          <MetalProAdvantage scrollToHero={() => scrollToSection('home')} />
         </section>
 
         {/* CallToAction*/}

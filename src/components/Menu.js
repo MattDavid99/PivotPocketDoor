@@ -42,7 +42,7 @@ export const Menu = ({ activeSection, scrollToSection }) => {
             {/* Navigation */}
             <nav className="hidden md:block ml-[200px]">
               <ul className="flex space-x-9 pt-0.5">
-                {['home', 'features', 'installation', 'benefits', 'advantages'].map((section) => (
+                {['home', 'features', 'installation'].map((section) => (
                   <li key={section}>
                     <button
                       onClick={() => scrollToSection(section)}

@@ -33,7 +33,7 @@ export const CallToAction = ({ scrollToHero }) => {
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">Ready to revolutionize your construction?</h2>
           <p className="mt-4 text-lg leading-8 text-white/90">
-            Join the Pivot Pocket Door Frame 20 community and experience the future of framing. Stronger, faster, and smarter construction
+            Join the Pivot Pocket Door Frame community and experience the future of framing. Stronger, faster, and smarter construction
             starts here.
           </p>
           <div className="mt-8 flex items-center justify-center gap-x-6">
