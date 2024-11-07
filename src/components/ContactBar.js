@@ -1,6 +1,5 @@
 import React from 'react';
 import { FaEnvelope, FaPhone } from 'react-icons/fa';
-import { SocialMedia } from './SocialMedia';
 
 export const ContactBar = () => {
   return (
@@ -16,7 +15,6 @@ export const ContactBar = () => {
           <p> Email: info@pivotmetalframes.com</p>
         </div>
       </div>
-      <SocialMedia />
     </div>
   );
 };

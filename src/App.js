@@ -4,7 +4,6 @@ import { CallToAction } from './components/CallToAction';
 import { FeaturesSection } from './components/Features';
 import { Menu } from './components/Menu';
 import { ContactBar } from './components/ContactBar';
-import { SocialMedia } from './components/SocialMedia';
 import Hestonection from './components/Hero';
 import { VideoAdvantageSection } from './components/VideoAdvantageSection';
 
@@ -91,7 +90,6 @@ const MarketingPage = () => {
       <div className="bg-gray-800 text-white py-4 flex justify-center ">
         <div className="container gap-2 items-center flex-col flex lg:flex-row lg:justify-between ">
           <p>&copy; 2024 Pivot Pocket Door. All rights reserved.</p>
-          <SocialMedia />
         </div>
       </div>
     </div>
