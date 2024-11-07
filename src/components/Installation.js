@@ -41,7 +41,7 @@ export const Installation = () => {
   }, []);
 
   return (
-    <div className="container mx-auto px-4">
+    <div className="container mx-auto px-4 -mt-8">
       {/* Main heading and installation steps */}
       <SectionHeader heading="Pivot Pocket Door Frame" />
       <InstallationSteps />

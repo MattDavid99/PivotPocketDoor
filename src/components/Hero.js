@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import ProductViewer from './ProductViewer';
-import { FaArrowRight } from 'react-icons/fa'; // Import Font Awesome arrow icon
+import { FaArrowRight, FaArrowLeft } from 'react-icons/fa'; // Import Font Awesome arrow icons
 
 const Hestonection = ({ scrollToSection }) => {
   const [showVideo, setShowVideo] = useState(true);
   const objVideo = 'https://dhgco4b5xc3u.cloudfront.net/Short-video-5.mp4';
 
-  // Toggle between video and 3D model viewer
-  const handleToggle = () => {
-    setShowVideo((prevShowVideo) => !prevShowVideo);
-  };
+  // Function to toggle to video
+  const showVideoContent = () => setShowVideo(true);
+
+  // Function to toggle to 3D model
+  const showModelContent = () => setShowVideo(false);
 
   // Modal functionality
   const [showForm, setShowForm] = useState(false);
@@ -81,15 +82,35 @@ const Hestonection = ({ scrollToSection }) => {
           </div>
         </div>
 
-        {/* Circular Toggle Button */}
-        <button
-          onClick={handleToggle}
-          className="absolute bottom-4 right-4 bg-white text-stone-900 rounded-full w-12 h-12 flex items-center justify-center shadow-lg transition duration-300 hover:bg-gray-300"
-          style={{
-            fontSize: '1.25rem',
-          }}>
-          <FaArrowRight />
-        </button>
+        {/* Navigation Buttons */}
+        <div className="absolute bottom-4 flex space-x-4 mr-4">
+          <button
+            onClick={showVideoContent}
+            disabled={showVideo} // Disable when video is active
+            className={`${
+              showVideo ? 'bg-[#c0f0c0]' : 'bg-[#90ee90]'
+            } text-white w-16 h-8 flex items-center justify-center shadow-lg transition duration-300 rounded-full ${
+              showVideo ? 'opacity-50 cursor-not-allowed' : 'hover:bg-[#76d776]'
+            }`}
+            style={{
+              borderRadius: '20px', // Capsule shape
+            }}>
+            <FaArrowLeft />
+          </button>
+          <button
+            onClick={showModelContent}
+            disabled={!showVideo} // Disable when model is active
+            className={`${
+              !showVideo ? 'bg-[#c0f0c0]' : 'bg-[#90ee90]'
+            } text-white w-16 h-8 flex items-center justify-center shadow-lg transition duration-300 rounded-full ${
+              !showVideo ? 'opacity-50 cursor-not-allowed' : 'hover:bg-[#76d776]'
+            }`}
+            style={{
+              borderRadius: '20px', // Capsule shape
+            }}>
+            <FaArrowRight />
+          </button>
+        </div>
       </div>
 
       {/* Modal Overlay */}
