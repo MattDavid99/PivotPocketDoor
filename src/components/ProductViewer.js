@@ -99,7 +99,7 @@ export default function ProductViewer() {
         backgroundColor: 'white',
       }}>
       <Canvas>
-        <PerspectiveCamera ref={cameraRef} makeDefault fov={68} />
+        <PerspectiveCamera ref={cameraRef} makeDefault fov={60} />
 
         {/* Adjusted lighting to lighten the model */}
         <ambientLight intensity={0.6} color={0xffffff} />
