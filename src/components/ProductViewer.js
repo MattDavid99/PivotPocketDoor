@@ -31,11 +31,11 @@ function Model({ url, onLoaded, shouldRotate }) {
       objRef.current.traverse((child) => {
         if (child.isMesh) {
           child.material = new THREE.MeshStandardMaterial({
-            color: 0xb0b0b0, // Lighter gray base color for brightness
-            metalness: 0.1, // Reduce metalness to make it reflect more light
+            color: 0xd0d0d0, // Lighter gray base color for brightness
+            metalness: 0.3, // Reduce metalness to make it reflect more light
             roughness: 0.2, // Slightly increase roughness for better visibility
-            envMapIntensity: 1.2, // Adjust reflection intensity
-            reflectivity: 0.9, // Slightly lower reflectivity to prevent dark reflections
+            envMapIntensity: 1.4, // Adjust reflection intensity
+            reflectivity: 0.99, // Slightly lower reflectivity to prevent dark reflections
           });
         }
       });
