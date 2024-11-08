@@ -28,7 +28,7 @@ export const CallToAction = ({ scrollToHero }) => {
   }, [showForm]);
 
   return (
-    <div className="w-full overflow-hidden">
+    <div className="w-full overflow-hidden -mt-20">
       <div className="relative isolate px-6 py-14 sm:py-22 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">Ready to revolutionize your construction?</h2>
