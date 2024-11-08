@@ -71,7 +71,7 @@ export const CallToAction = ({ scrollToHero }) => {
               {/* Close Button */}
               <button
                 onClick={closeModal}
-                className="absolute top-4 left-4 text-gray-500 hover:text-gray-800 focus:outline-none p-2 text-2xl z-50">
+                className="absolute top-4 left-4 text-gray-500 hover:text-gray-800 focus:outline-none p-2 text-2xl z-40">
                 ✕
               </button>
               {/* Iframe Wrapper */}

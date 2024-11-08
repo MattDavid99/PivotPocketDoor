@@ -110,7 +110,7 @@ const Hestonection = ({ scrollToSection }) => {
           <div className="bg-white rounded-lg shadow-xl w-[90%] sm:w-[80%] md:w-[70%] lg:w-[50%] max-w-[800px] h-[80vh] relative z-[10001] overflow-hidden flex flex-col pt-12 px-6">
             <button
               onClick={closeModal}
-              className="absolute top-4 left-4 text-gray-500 hover:text-gray-800 focus:outline-none p-2 text-2xl z-50">
+              className="absolute top-4 left-4 text-gray-500 hover:text-gray-800 focus:outline-none p-2 text-2xl z-40">
               ✕
             </button>
             <div className="flex-grow overflow-y-auto">

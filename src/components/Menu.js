@@ -30,7 +30,7 @@ export const Menu = ({ activeSection, scrollToSection }) => {
 
   return (
     <>
-      <header className="bg-white shadow-lg py-4 sticky top-0 z-10000">
+      <header className="bg-white shadow-lg py-4 sticky top-0 z-50">
         <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="flex items-center gap-10">
             {/* Logo */}

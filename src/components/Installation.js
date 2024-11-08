@@ -6,7 +6,7 @@ import SingleDoor from '../assets/Single-Table-WithDoor.png';
 
 const ImageBlockWithTitle = ({ title, imageSrc, onClick, titleClass }) => (
   <div className="flex flex-col items-center">
-    <h3 className={`text-2xl md:text-3xl font-bold text-gray-900 z-50 ${titleClass}`}>{title}</h3>
+    <h3 className={`text-2xl md:text-3xl font-bold text-gray-900 z-40 ${titleClass}`}>{title}</h3>
     <img
       src={imageSrc}
       alt={`${title} Diagram`}
@@ -52,7 +52,7 @@ export const Installation = () => {
 
       {/* Modal for full-size image view */}
       {isOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50" onClick={closeModal}>
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-40" onClick={closeModal}>
           <div className="relative max-w-full max-h-full p-4 md:p-8">
             <img src={currentImage} alt="Expanded view" className="w-auto h-auto max-w-full max-h-[90vh] rounded-lg object-contain" />
           </div>
