@@ -12,7 +12,7 @@ function Model({ url, onLoaded, shouldRotate }) {
     dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
     loader.setDRACOLoader(dracoLoader);
   });
-  const { scene } = useThree();
+  // const { scene } = useThree();
 
   useEffect(() => {
     if (gltf) {
@@ -41,7 +41,7 @@ function Model({ url, onLoaded, shouldRotate }) {
             }
           });
         }
-      }
+      };
     }
   }, [gltf, onLoaded]);
 
@@ -116,13 +116,7 @@ export default function ProductViewer() {
           }>
           <Model url="/metal.glb" onLoaded={setBoundingSphere} shouldRotate={shouldRotate} />
         </Suspense>
-        <OrbitControls
-          enableDamping={false}
-          enableZoom={true}
-          maxDistance={20}
-          onStart={handleDragStart}
-          onEnd={handleDragEnd}
-        />
+        <OrbitControls enableDamping={false} enableZoom={true} maxDistance={20} onStart={handleDragStart} onEnd={handleDragEnd} />
       </Canvas>
     </div>
   );
