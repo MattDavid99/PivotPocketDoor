@@ -1,48 +1,49 @@
 import React, { useRef, useEffect, useState, Suspense } from 'react';
 import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber';
-import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
 import * as THREE from 'three';
 
 function Model({ url, onLoaded, shouldRotate }) {
   const groupRef = useRef();
-  const objRef = useRef();
-  const obj = useLoader(OBJLoader, url);
+  const gltf = useLoader(GLTFLoader, url, (loader) => {
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
+    loader.setDRACOLoader(dracoLoader);
+  });
   const { scene } = useThree();
 
   useEffect(() => {
-    if (obj) {
-      objRef.current = obj;
+    if (gltf) {
+      const model = gltf.scene;
 
       const scaleFactor = 0.005;
-      objRef.current.scale.set(scaleFactor, scaleFactor, scaleFactor);
+      model.scale.set(scaleFactor, scaleFactor, scaleFactor);
 
-      // Centering the object
-      const box = new THREE.Box3().setFromObject(objRef.current);
+      // Centering the model
+      const box = new THREE.Box3().setFromObject(model);
       const center = box.getCenter(new THREE.Vector3());
-      objRef.current.position.sub(center);
+      model.position.sub(center);
 
       const sphere = box.getBoundingSphere(new THREE.Sphere());
 
-      groupRef.current.add(objRef.current);
-      scene.add(groupRef.current);
-
-      // Adjusting material to lighten the appearance
-      objRef.current.traverse((child) => {
-        if (child.isMesh) {
-          child.material = new THREE.MeshStandardMaterial({
-            color: 0xd0d0d0, // Lighter gray base color for brightness
-            metalness: 0.3, // Reduce metalness to make it reflect more light
-            roughness: 0.2, // Slightly increase roughness for better visibility
-            envMapIntensity: 1.4, // Adjust reflection intensity
-            reflectivity: 0.99, // Slightly lower reflectivity to prevent dark reflections
-          });
-        }
-      });
+      groupRef.current.add(model);
 
       onLoaded(sphere);
+
+      return () => {
+        if (gltf) {
+          gltf.scene.traverse((child) => {
+            if (child.isMesh) {
+              child.geometry.dispose();
+              child.material.dispose();
+            }
+          });
+        }
+      }
     }
-  }, [obj, scene, onLoaded]);
+  }, [gltf, onLoaded]);
 
   useFrame(() => {
     if (groupRef.current && shouldRotate) {
@@ -98,17 +99,13 @@ export default function ProductViewer() {
         height: '100%',
         backgroundColor: 'white',
       }}>
-      <Canvas>
+      <Canvas toneMapping={THREE.LinearToneMapping}>
         <PerspectiveCamera ref={cameraRef} makeDefault fov={60} />
 
-        {/* Adjusted lighting to lighten the model */}
-        <ambientLight intensity={0.6} color={0xffffff} />
-        <directionalLight intensity={1.2} position={[3, 3, 5]} color={0xffffff} />
-        <directionalLight intensity={0.8} position={[-3, -3, -5]} color={0xffffff} />
-
-        {/* Additional point lights for consistent illumination */}
-        <pointLight intensity={0.6} position={[2, 3, 4]} color={0xffffff} />
-        <pointLight intensity={0.4} position={[-2, -1, 1]} color={0xffffff} />
+        {/* Adjusted lighting */}
+        <ambientLight intensity={1.5} color={0xffffff} />
+        <directionalLight intensity={3} position={[3, 3, 5]} color={0xffffff} />
+        <directionalLight intensity={3} position={[-3, -3, -5]} color={0xffffff} />
 
         <Suspense
           fallback={
@@ -117,12 +114,12 @@ export default function ProductViewer() {
               <meshStandardMaterial color="hotpink" />
             </mesh>
           }>
-          <Model url="/metal-main.obj" onLoaded={setBoundingSphere} shouldRotate={shouldRotate} />
+          <Model url="/metal.glb" onLoaded={setBoundingSphere} shouldRotate={shouldRotate} />
         </Suspense>
         <OrbitControls
           enableDamping={false}
           enableZoom={true}
-          maxDistance={20} // higher number, more they can zoom out
+          maxDistance={20}
           onStart={handleDragStart}
           onEnd={handleDragEnd}
         />
